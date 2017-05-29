@@ -1,0 +1,24 @@
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="form-horizontal">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="long">Longitude:</label>
+      <div class="col-sm-6">
+        <input  class="form-control" id="long" [formControl]="myForm.controls['longitude']" placeholder="Enter longitude" name="long">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="lat">Latitude:</label>
+      <div class="col-sm-6">
+        <input  class="form-control" id="lat" [formControl]="myForm.controls['latitude']" placeholder="Enter latitude" name="lat">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+
+
+<app-result [fountains]="fountains"></app-result>

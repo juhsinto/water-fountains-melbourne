@@ -1,0 +1,20 @@
+[{
+		"_id": "591f9fd55708a512b4baa369",
+		"name": "Drinking Fountain - Monument Style Type 2",
+		"street": "Argyle Square",
+		"loc": {
+			"lon": 144.966300681984,
+			"lat": -37.8028230823553
+		}
+	},
+	{
+		"_id": "591f9fd55708a512b4baa36a",
+		"name": "Historic or Heritage Drinking Fountains ",
+		"street": "Alexandra Park",
+		"loc": {
+			"lon": 144.984920364319,
+			"lat": -37.8271436317369
+
+		}
+	}
+]

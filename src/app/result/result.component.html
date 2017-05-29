@@ -1,0 +1,25 @@
+<!-- <ul class="list-group">
+  <li class="list-group-item col-sm-10 ">First item</li>
+  <li class="list-group-item col-sm-10 ">Second item</li>
+  <li class="list-group-item col-sm-10">Third item</li>
+</ul> -->
+
+
+
+
+<table *ngIf="fountains.length > 0" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Fountain Type</th>
+        <th>Street</th>
+        <th>GPS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fountain of fountains">
+        <td> {{ fountain.name }}</td>
+        <td> {{ fountain.street }}</td>
+        <td> {{ fountain.loc.lat }} , {{ fountain.loc.lon }} </td>
+      </tr>
+    </tbody>
+  </table>
