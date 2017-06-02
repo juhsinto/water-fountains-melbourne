@@ -1,5 +1,6 @@
 
-  <!--<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="form-horizontal">
+  <form *ngIf="gpsDisabled" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="form-horizontal">
+    <p> Your browser does not support GPS, Please manually enter your GPS coordinates below </p>
     <div class="form-group">
       <label class="control-label col-sm-2" for="long">Longitude:</label>
       <div class="col-sm-6">
@@ -18,10 +19,7 @@
         <button class="btn btn-default">Submit</button>
       </div>
     </div>
-  </form>-->
-
-  <p id="demo"></p>
-
+  </form>
 
  <sebm-google-map 
       [latitude]="lat"

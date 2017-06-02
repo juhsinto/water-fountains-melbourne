@@ -20,21 +20,25 @@ declare var my_postiion;
 export class QueryComponent implements OnInit {
 
   // TEST DATA
-markers = [
-{
-  lat: 51.673858,
-  lng: 7.815982,
-},
-{
-  lat: 51.373858,
-  lng: 7.215982,
-},
-{
-  lat: 51.723858,
-  lng: 7.895982,
-}
-];
+  markers = [
+    {
+      lat: 51.673858,
+      lng: 7.815982,
+    },
+    {
+      lat: 51.373858,
+      lng: 7.215982,
+    },
+    {
+      lat: 51.723858,
+      lng: 7.895982,
+    }
+  ];
 
+  // flag to store if gps disabled by browser
+  gpsDisabled: boolean = false;
+
+  // form to store input gps data
   myForm: FormGroup;
 
   // google maps zoom level
@@ -53,37 +57,36 @@ markers = [
 
   constructor(private waterService: WaterService, fb: FormBuilder) {
     this.myForm = fb.group({
-        'longitude': [''],
-        'latitude': ['']
-      });
-     }
+      'longitude': [''],
+      'latitude': ['']
+    });
+  }
 
   ngOnInit() {
 
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-
-
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.lat = position.coords.latitude;
+          this.lng = position.coords.longitude;
           console.log('The GPS location obtained from browser ' + this.lat + ', ' + this.lng);
 
-          this.waterService.getReqData(this.lng, this.lat)
+        this.waterService.getReqData(this.lng, this.lat)
           //this.waterService.fetchData()
           .subscribe(
-            (data) => this.fountains = data
+          (data) => this.fountains = data
           );
-      });
+      }, (failure) => this.gpsDisabled = true
+      );
     } else {
       alert('your browser does not support gps');
     }
-
-
   }
 
   // this is run on submit
   onSubmit(value: any): void {
     this.myfunction();
+    
   }
 
 
