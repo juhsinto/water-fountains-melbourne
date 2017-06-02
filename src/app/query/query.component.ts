@@ -4,10 +4,6 @@ import {
   FormBuilder,
   FormGroup
 } from '@angular/forms';
-import { MapsAPILoader } from 'angular2-google-maps/core';
-
-
-declare var my_postiion;
 
 @Component({
   selector: 'app-query',
@@ -15,25 +11,7 @@ declare var my_postiion;
   styleUrls: ['./query.component.css']
 })
 
-
-
 export class QueryComponent implements OnInit {
-
-  // TEST DATA
-  markers = [
-    {
-      lat: 51.673858,
-      lng: 7.815982,
-    },
-    {
-      lat: 51.373858,
-      lng: 7.215982,
-    },
-    {
-      lat: 51.723858,
-      lng: 7.895982,
-    }
-  ];
 
   // flag to store if gps disabled by browser
   gpsDisabled: boolean = false;
@@ -46,11 +24,11 @@ export class QueryComponent implements OnInit {
 
   // initial center position for the map
 
-  lat: number;
-  // lat: number = -37.8182711;
+  // lat: number;
+  lat: number = -37.8182711;
 
-  lng: number;
-  // lng: number = 144.9670618;
+  // lng: number;
+  lng: number = 144.9670618;
 
   // store the fountain data ; this will come after API call
   fountains = [];
@@ -83,14 +61,17 @@ export class QueryComponent implements OnInit {
     }
   }
 
-  // this is run on submit
+  // this is run, onSubmit of the fallback gps submission
   onSubmit(value: any): void {
-    this.myfunction();
-    
-  }
 
+    this.lat = this.myForm.value['latitude'];
+    this.lng = this.myForm.value['longitude'];
 
-  myfunction() {
-    console.log(this.fountains.length);
+    console.log('The GPS location obtained from form submission ' + this.lat + ', ' + this.lng);
+
+    this.waterService.getReqData(this.lng, this.lat)
+        .subscribe(
+        (data) => this.fountains = data
+        );
   }
 }
