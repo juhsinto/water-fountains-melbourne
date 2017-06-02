@@ -1,5 +1,5 @@
 
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="form-horizontal">
+  <!--<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="form-horizontal">
     <div class="form-group">
       <label class="control-label col-sm-2" for="long">Longitude:</label>
       <div class="col-sm-6">
@@ -18,7 +18,26 @@
         <button class="btn btn-default">Submit</button>
       </div>
     </div>
-  </form>
+  </form>-->
 
+  <p id="demo"></p>
+
+
+ <sebm-google-map 
+      [latitude]="lat"
+      [longitude]="lng"
+      [zoom]="zoom"
+      [disableDefaultUI]="false"
+      [zoomControl]="false"
+      (mapClick)="mapClicked($event)">
+
+    <sebm-google-map-marker 
+        *ngFor="let fountain of fountains"
+        [latitude]="fountain.loc.lat"
+        [longitude]="fountain.loc.lon"
+        [markerDraggable]="false">    
+    </sebm-google-map-marker>
+
+</sebm-google-map>
 
 <app-result [fountains]="fountains"></app-result>
